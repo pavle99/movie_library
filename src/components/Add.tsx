@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Add = () => {
   return (
-    <div>
-      Add
+    <div className="add-page">
+      <div className="container">
+        <div className="add-content">
+          <div className="input-wrapper">
+            <input type="text" placeholder="Search for a movie" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
