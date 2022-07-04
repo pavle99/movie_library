@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import ResultCard from "./ResultCard";
+
 const Add = () => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<any[]>([]);
@@ -28,6 +30,16 @@ const Add = () => {
               onChange={onChange}
             />
           </div>
+
+          {results.length > 0 && (
+            <ul className="results">
+              {results.map((movie) => (
+                <li key={movie.id}>
+                  <ResultCard movie={movie} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
