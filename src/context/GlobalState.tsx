@@ -1,11 +1,11 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 
 import AppReducer from "./AppReducer";
 import { MovieProp } from "../components/ResultCard";
 
 export interface MovieState {
-  watchlist: any[];
-  watched: any[];
+  watchlist: MovieProp[];
+  watched: MovieProp[];
   addMovieToWatchlist: (movie: MovieProp) => any;
 }
 
@@ -15,8 +15,12 @@ export interface MovieAction {
 }
 
 const initialState: MovieState = {
-  watchlist: [],
-  watched: [],
+  watchlist: localStorage.getItem("watchlist")
+    ? JSON.parse(localStorage.getItem("watchlist") ?? "")
+    : [],
+  watched: localStorage.getItem("watched")
+    ? JSON.parse(localStorage.getItem("watched") ?? "")
+    : [],
   addMovieToWatchlist(movie: MovieProp): any {},
 };
 
@@ -24,6 +28,11 @@ export const GlobalContext = createContext<MovieState>(initialState);
 
 export const GlobalProvider = (props: any) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
+    localStorage.setItem("watched", JSON.stringify(state.watched));
+  }, [state]);
 
   const addMovieToWatchlist = (movie: MovieProp) => {
     dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
