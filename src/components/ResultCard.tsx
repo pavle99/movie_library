@@ -2,9 +2,9 @@ import React from "react";
 
 interface MovieProp {
   movie: {
-    poster_path: string,
-    title: string,
-    release_date: string
+    poster_path: string;
+    title: string;
+    release_date: string;
   };
 }
 
@@ -13,7 +13,10 @@ const ResultCard = ({ movie }: MovieProp) => {
     <div className="result-card">
       <div className="poster-wrapper">
         {movie.poster_path ? (
-          <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={`${movie.title} Poster`} />
+          <img
+            src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+            alt={`${movie.title} Poster`}
+          />
         ) : (
           <div className="filler-poster"></div>
         )}
@@ -28,12 +31,9 @@ const ResultCard = ({ movie }: MovieProp) => {
         </div>
 
         <div className="controls">
-          <button className="btn">
-            Add to Watchlist
-          </button>
+          <button className="btn">Add to Watchlist</button>
         </div>
       </div>
-
     </div>
   );
 };
