@@ -1,23 +1,23 @@
 import React, { createContext, useReducer } from "react";
 
 import AppReducer from "./AppReducer";
+import { MovieProp } from "../components/ResultCard";
 
 export interface MovieState {
-  watchlist: any[],
-  watched: any[],
-  addMovieToWatchlist: (movie: any) => any
+  watchlist: any[];
+  watched: any[];
+  addMovieToWatchlist: (movie: MovieProp) => any;
 }
 
 export interface MovieAction {
-  type: string,
-  payload: any
+  type: string;
+  payload: any;
 }
 
 const initialState: MovieState = {
   watchlist: [],
   watched: [],
-  addMovieToWatchlist(movie: any): any {
-  }
+  addMovieToWatchlist(movie: MovieProp): any {},
 };
 
 export const GlobalContext = createContext<MovieState>(initialState);
@@ -25,7 +25,7 @@ export const GlobalContext = createContext<MovieState>(initialState);
 export const GlobalProvider = (props: any) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  const addMovieToWatchlist = (movie: any) => {
+  const addMovieToWatchlist = (movie: MovieProp) => {
     dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
   };
 
@@ -34,7 +34,7 @@ export const GlobalProvider = (props: any) => {
       value={{
         watchlist: state.watchlist,
         watched: state.watched,
-        addMovieToWatchlist: addMovieToWatchlist
+        addMovieToWatchlist: addMovieToWatchlist,
       }}
     >
       {props.children}
