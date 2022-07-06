@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
 const Watchlist = () => {
+  const { watchlist } = useContext(GlobalContext);
+
   return (
-    <div>
-      Watchlist
+    <div className="movie-page">
+      <div className="container">
+        <div className="header">
+          <h1 className="heading">My Watchlist</h1>
+        </div>
+      </div>
     </div>
   );
 };

@@ -5,11 +5,11 @@ const appReducer = (state: MovieState, action: MovieAction) => {
     case "ADD_MOVIE_TO_WATCHLIST":
       return {
         ...state,
-        watchlist: [action.payload, ...state.watchlist]
+        watchlist: [action.payload, ...state.watchlist],
       };
     default:
       return state;
   }
-}
+};
 
 export default appReducer;
