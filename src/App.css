@@ -159,6 +159,11 @@ header .nav-links li:last-child {
     color: transparent;
 }
 
+.watch {
+    width: 204px;
+    height: 306px;
+}
+
 .result-card .info {
     display: flex;
     flex-direction: column;

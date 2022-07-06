@@ -17,7 +17,7 @@ const MovieCard = ({ movie, type }: MovieCardProp) => {
           alt={`${movie.title} Poster`}
         />
       ) : (
-        <div className="filler-poster"></div>
+        <div className="filler-poster watch"></div>
       )}
 
       <MovieControls movie={movie} type={type} />
