@@ -3,18 +3,16 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 export interface MovieProp {
-  movie: {
-    id: number;
-    poster_path: string;
-    title: string;
-    release_date: string;
-  };
+  id: number;
+  poster_path: string;
+  title: string;
+  release_date: string;
 }
 
-const ResultCard = ({ movie }: MovieProp) => {
+const ResultCard = (movie: MovieProp) => {
   const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
 
-  let storedMovie = watchlist.find((wlmovie) => wlmovie.movie.id === movie.id);
+  let storedMovie = watchlist.find((wlmovie) => wlmovie.id === movie.id);
 
   const watchlistDisabled = !!storedMovie;
 
@@ -43,7 +41,7 @@ const ResultCard = ({ movie }: MovieProp) => {
           <button
             className="btn"
             disabled={watchlistDisabled}
-            onClick={() => addMovieToWatchlist({ movie })}
+            onClick={() => addMovieToWatchlist(movie)}
           >
             Add to Watchlist
           </button>
