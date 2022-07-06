@@ -10,11 +10,14 @@ export interface MovieProp {
 }
 
 const ResultCard = (movie: MovieProp) => {
-  const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
+  const { addMovieToWatchlist, addMovieToWatched, watchlist, watched } =
+    useContext(GlobalContext);
 
   let storedMovie = watchlist.find((wlmovie) => wlmovie.id === movie.id);
+  let storedMovieWatched = watched.find((wmovie) => wmovie.id === movie.id);
 
-  const watchlistDisabled = !!storedMovie;
+  const watchlistDisabled = storedMovie ? true : !!storedMovieWatched;
+  const watchedDisaled = !!storedMovieWatched;
 
   return (
     <div className="result-card">
@@ -44,6 +47,14 @@ const ResultCard = (movie: MovieProp) => {
             onClick={() => addMovieToWatchlist(movie)}
           >
             Add to Watchlist
+          </button>
+
+          <button
+            className="btn"
+            disabled={watchedDisaled}
+            onClick={() => addMovieToWatched(movie)}
+          >
+            Add to Watched
           </button>
         </div>
       </div>
